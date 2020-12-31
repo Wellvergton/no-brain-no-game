@@ -1,0 +1,7 @@
+{
+  "name": "no-brain-no-gain",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
