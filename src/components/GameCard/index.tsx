@@ -1,12 +1,20 @@
 import { IonCard, IonCardHeader, IonCardTitle, IonImg } from "@ionic/react";
 import React from "react";
 
-const GameCard: React.FC<{ name: string; imgSrc: string }> = (props) => {
+interface Props {
+  name: string;
+  imgSrc: string;
+  href: string;
+}
+
+const GameCard: React.FC<Props> = (props) => {
   return (
-    <IonCard href="#">
+    <IonCard href={props.href}>
       <IonImg src={props.imgSrc} />
       <IonCardHeader>
-        <IonCardTitle class="ion-text-center">{props.name}</IonCardTitle>
+        <IonCardTitle class="ion-text-center ion-text-capitalize">
+          {props.name}
+        </IonCardTitle>
       </IonCardHeader>
     </IonCard>
   );
