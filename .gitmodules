@@ -1,0 +1,3 @@
+[submodule "src/components/games/simone"]
+	path = src/components/games/simone
+	url = https://github.com/Wellvergton/simone
