@@ -10,6 +10,7 @@ import {
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import ExitGameAlert from "../components/ExitGameAlert";
+import Simone from "../components/games/simone";
 import React, { useState } from "react";
 
 type GameStatus = "playing" | "paused" | "stopped";
@@ -40,6 +41,7 @@ const Game: React.FC = () => {
             <IonTitle>Game</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <Simone />
         <ExitGameAlert
           showAlert={showAlert}
           onDismiss={() => setShowAlert(false)}
