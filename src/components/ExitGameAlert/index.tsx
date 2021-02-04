@@ -3,7 +3,7 @@ import React from "react";
 
 interface Props {
   showAlert: boolean;
-  onDismiss(value: boolean): void;
+  onDismiss(): void;
   onConfirm(): void;
 }
 
@@ -11,7 +11,7 @@ const ExitGameAlert: React.FC<Props> = (props) => {
   return (
     <IonAlert
       isOpen={props.showAlert}
-      onDidDismiss={() => props.onDismiss(false)}
+      onDidDismiss={() => props.onDismiss()}
       header={"Alert"}
       message={"The progress will be lost"}
       buttons={[
