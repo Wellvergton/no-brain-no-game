@@ -41,7 +41,10 @@ const Game: React.FC = () => {
             <IonTitle>Game</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <Simone />
+        <Simone
+          onStart={() => setStatus("playing")}
+          onStop={() => setStatus("stopped")}
+        />
         <ExitGameAlert
           showAlert={showAlert}
           onDismiss={() => setShowAlert(false)}
