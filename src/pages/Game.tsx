@@ -8,9 +8,11 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { arrowBack } from "ionicons/icons";
+import { arrowBack, ellipsisVertical, informationCircle } from "ionicons/icons";
 import ExitGameAlert from "../components/ExitGameAlert";
+import Popover from "../components/Popover";
 import Simone from "../components/games/simone";
+import GameRules from "../components/games/simone/GameRules";
 import React, { useState } from "react";
 
 type GameStatus = "playing" | "paused" | "stopped";
@@ -18,6 +20,11 @@ type GameStatus = "playing" | "paused" | "stopped";
 const Game: React.FC = () => {
   const [status, setStatus] = useState<GameStatus>("stopped");
   const [showAlert, setShowAlert] = useState(false);
+  const [showRules, setShowRules] = useState(false);
+  const [popoverStatus, setPopoverStatus] = useState({
+    show: false,
+    event: undefined,
+  });
 
   function exit(): void {
     if (status === "playing") setStatus("stopped");
@@ -39,6 +46,20 @@ const Game: React.FC = () => {
               </IonButton>
             </IonButtons>
             <IonTitle>Game</IonTitle>
+            <IonButtons slot="end">
+              <IonButton shape="round" onClick={() => setShowRules(true)}>
+                <IonIcon icon={informationCircle} />
+              </IonButton>
+              <IonButton
+                shape="round"
+                onClick={(evt: any) => {
+                  evt.persist();
+                  setPopoverStatus({ show: true, event: evt });
+                }}
+              >
+                <IonIcon icon={ellipsisVertical} />
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <Simone
@@ -51,6 +72,12 @@ const Game: React.FC = () => {
           onConfirm={exit}
         />
       </IonContent>
+      <Popover
+        event={popoverStatus.event}
+        isOpen={popoverStatus.show}
+        onDismiss={() => setPopoverStatus({ show: false, event: undefined })}
+      />
+      <GameRules isOpen={showRules} onDismiss={() => setShowRules(false)} />
     </IonPage>
   );
 };
